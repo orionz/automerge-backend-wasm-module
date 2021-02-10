@@ -20,7 +20,7 @@
   ],
   "type": "module",
   "exports": {
-    ".": "index.js"
+    ".": "./index.js"
   },
   "types": "index.d.ts",
   "sideEffects": false
