@@ -104,12 +104,6 @@ function getInt32Memory0() {
     return cachegetInt32Memory0;
 }
 
-function _assertBoolean(n) {
-    if (typeof(n) !== 'boolean') {
-        throw new Error('expected a boolean argument');
-    }
-}
-
 function dropObject(idx) {
     if (idx < 36) return;
     heap[idx] = heap_next;
@@ -211,6 +205,12 @@ function _assertClass(instance, klass) {
         throw new Error(`expected instance of ${klass.name}`);
     }
     return instance.ptr;
+}
+
+function _assertBoolean(n) {
+    if (typeof(n) !== 'boolean') {
+        throw new Error('expected a boolean argument');
+    }
 }
 /**
 * @returns {any}
@@ -331,21 +331,6 @@ export function getMissingDeps(input) {
     return takeObject(ret);
 }
 
-function handleError(f) {
-    return function () {
-        try {
-            return f.apply(this, arguments);
-
-        } catch (e) {
-            wasm.__wbindgen_exn_store(addHeapObject(e));
-        }
-    };
-}
-
-function getArrayU8FromWasm0(ptr, len) {
-    return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
-}
-
 function _assertNum(n) {
     if (typeof(n) !== 'number') throw new Error('expected a number argument');
 }
@@ -425,50 +410,6 @@ export const __wbg_setheads_e09c34780514be5a = logError(function(arg0, arg1) {
     getObject(arg0).heads = takeObject(arg1);
 });
 
-export const __wbindgen_is_undefined = function(arg0) {
-    var ret = getObject(arg0) === undefined;
-    _assertBoolean(ret);
-    return ret;
-};
-
-export const __wbg_self_86b4b13392c7af56 = handleError(function() {
-    var ret = self.self;
-    return addHeapObject(ret);
-});
-
-export const __wbg_msCrypto_9ad6677321a08dd8 = logError(function(arg0) {
-    var ret = getObject(arg0).msCrypto;
-    return addHeapObject(ret);
-});
-
-export const __wbg_crypto_b8c92eaac23d0d80 = logError(function(arg0) {
-    var ret = getObject(arg0).crypto;
-    return addHeapObject(ret);
-});
-
-export const __wbg_getRandomValues_dd27e6b0652b3236 = logError(function(arg0) {
-    var ret = getObject(arg0).getRandomValues;
-    return addHeapObject(ret);
-});
-
-export const __wbg_getRandomValues_e57c9b75ddead065 = logError(function(arg0, arg1) {
-    getObject(arg0).getRandomValues(getObject(arg1));
-});
-
-export const __wbg_randomFillSync_d2ba53160aec6aba = logError(function(arg0, arg1, arg2) {
-    getObject(arg0).randomFillSync(getArrayU8FromWasm0(arg1, arg2));
-});
-
-export const __wbg_static_accessor_MODULE_452b4680e8614c81 = logError(function() {
-    var ret = module;
-    return addHeapObject(ret);
-});
-
-export const __wbg_require_f5521a5b85ad2542 = logError(function(arg0, arg1, arg2) {
-    var ret = getObject(arg0).require(getStringFromWasm0(arg1, arg2));
-    return addHeapObject(ret);
-});
-
 export const __wbg_new_9dff83a08f5994f3 = logError(function() {
     var ret = new Array();
     return addHeapObject(ret);
@@ -513,18 +454,8 @@ export const __wbg_new_c6c0228e6d22a2f9 = logError(function(arg0) {
     return addHeapObject(ret);
 });
 
-export const __wbg_newwithlength_a429e08f8a8fe4b3 = logError(function(arg0) {
-    var ret = new Uint8Array(arg0 >>> 0);
-    return addHeapObject(ret);
-});
-
 export const __wbg_newwithbyteoffsetandlength_4c51342f87299c5a = logError(function(arg0, arg1, arg2) {
     var ret = new Uint8Array(getObject(arg0), arg1 >>> 0, arg2 >>> 0);
-    return addHeapObject(ret);
-});
-
-export const __wbg_subarray_02e2fcfa6b285cb2 = logError(function(arg0, arg1, arg2) {
-    var ret = getObject(arg0).subarray(arg1 >>> 0, arg2 >>> 0);
     return addHeapObject(ret);
 });
 
